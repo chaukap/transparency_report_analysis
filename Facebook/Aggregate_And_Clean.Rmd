@@ -1,0 +1,231 @@
+---
+title: "Facebook_requests"
+author: "Chandler Haukap"
+date: "2/16/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stringr)
+library(data.table)
+```
+
+## Read the files
+
+Facebook separates each 6 month period into its own csv.
+
+```{r}
+fb_2013_1 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2013_H1.csv")
+fb_2013_2 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2013_H2.csv")
+fb_2014_1 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2014_H1.csv")
+fb_2014_2 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2014_H2.csv")
+fb_2015_1 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2015_H1.csv")
+fb_2015_2 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2015_H2.csv")
+fb_2016_1 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2016_H1.csv")
+fb_2016_2 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2016_H2.csv")
+fb_2017_1 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2017_H1.csv")
+fb_2017_2 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2017_H2.csv")
+fb_2018_1 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2018_H1.csv")
+fb_2018_2 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2018_H2.csv")
+fb_2019_1 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2019_H1.csv")
+fb_2019_2 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2019_H2.csv")
+fb_2020_1 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2020_H1.csv")
+fb_2020_2 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2020_H2.csv")
+fb_2021_1 <- read.csv("Raw_Data/PRPL-Facebook-Government-Report-2021_H1.csv")
+```
+
+``` {r}
+fb_2013_1$year = 2013
+fb_2013_2$year = 2013
+fb_2014_1$year = 2014
+fb_2014_2$year = 2014
+fb_2015_1$year = 2015
+fb_2015_2$year = 2015
+fb_2016_1$year = 2016
+fb_2016_2$year = 2016
+fb_2017_1$year = 2017
+fb_2017_2$year = 2017
+fb_2018_1$year = 2018
+fb_2018_2$year = 2018
+fb_2019_1$year = 2019
+fb_2019_2$year = 2019
+fb_2020_1$year = 2020
+fb_2020_2$year = 2020
+fb_2021_1$year = 2021
+
+fb_2013_1$half = 1
+fb_2013_2$half = 2
+fb_2014_1$half = 1
+fb_2014_2$half = 2
+fb_2015_1$half = 1
+fb_2015_2$half = 2
+fb_2016_1$half = 1
+fb_2016_2$half = 2
+fb_2017_1$half = 1
+fb_2017_2$half = 2
+fb_2018_1$half = 1
+fb_2018_2$half = 2
+fb_2019_1$half = 1
+fb_2019_2$half = 2
+fb_2020_1$half = 1
+fb_2020_2$half = 2
+fb_2021_1$half = 1
+```
+
+Facebook changed the categories it reports around 2017. `names` is the older column names, `new.names` is the new column names, and `desired.names` are the standardized column names that I will amalgomate between companies.
+
+``` {r}
+names <- c("ï..Country", "Total.Requests", "Total.Requests.Accounts",
+           "Search.Warrant", "Search.Warrant.Accounts", "Subpoena",
+           "Subpoena.Accounts", "NSLs", "NSLs.Accounts", "year", "half")
+
+new.names <- c("Country", "Total.Requests", "Total.Requests.Accounts",
+           "Search.Warrant", "Search.Warrant.Accounts", "Subpoena",
+           "Subpoena.Accounts", "NSLs", "NSLs.Accounts", "year", "half")
+
+desired.names <- c("country", "total_requests", "total_requests_accounts",
+           "search_warrant", "search_warrant_accounts", "subpoena",
+           "subpoena_accounts", "nsls", "nsls_accounts", "year", "half")
+```
+
+```{r}
+fb_2013_1 <- fb_2013_1[names]
+fb_2013_2 <- fb_2013_2[names]
+fb_2014_1 <- fb_2014_1[names]
+fb_2014_2 <- fb_2014_2[names]
+fb_2015_1 <- fb_2015_1[names]
+fb_2015_2 <- fb_2015_2[names]
+fb_2016_1 <- fb_2016_1[names]
+fb_2016_2 <- fb_2016_2[names]
+fb_2017_1 <- fb_2017_1[names]
+fb_2017_2 <- fb_2017_2[names]
+fb_2018_1 <- fb_2018_1[names]
+fb_2018_2 <- fb_2018_2[names]
+fb_2019_1 <- fb_2019_1[names]
+fb_2019_2 <- fb_2019_2[names]
+fb_2020_1 <- fb_2020_1[names]
+fb_2020_2 <- fb_2020_2[new.names]
+fb_2021_1 <- fb_2021_1[new.names]
+
+names(fb_2013_1) <- desired.names
+names(fb_2013_2) <- desired.names
+names(fb_2014_1) <- desired.names
+names(fb_2014_2) <- desired.names
+names(fb_2015_1) <- desired.names
+names(fb_2015_2) <- desired.names
+names(fb_2016_1) <- desired.names
+names(fb_2016_2) <- desired.names
+names(fb_2017_1) <- desired.names
+names(fb_2017_2) <- desired.names
+names(fb_2018_1) <- desired.names
+names(fb_2018_2) <- desired.names
+names(fb_2019_1) <- desired.names
+names(fb_2019_2) <- desired.names
+names(fb_2020_1) <- desired.names
+names(fb_2020_2) <- desired.names
+names(fb_2021_1) <- desired.names
+```
+
+```{r}
+fb_2016_1$total_requests <-
+  as.integer(str_replace_all(fb_2016_1$total_requests,",",""))
+
+fb_2016_2$total_requests <-
+  as.integer(str_replace_all(fb_2016_2$total_requests,",",""))
+
+fb_2017_1$total_requests <-
+  as.integer(str_replace_all(fb_2017_1$total_requests,",",""))
+
+fb_2017_2$total_requests <-
+  as.integer(str_replace_all(fb_2017_2$total_requests,",",""))
+
+fb_2013_1$total_requests <-
+  as.integer(str_replace_all(fb_2013_1$total_requests,",",""))
+
+fb_2013_2$total_requests <-
+  as.integer(str_replace_all(fb_2013_2$total_requests,",",""))
+
+fb_2014_1$total_requests <-
+  as.integer(str_replace_all(fb_2014_1$total_requests,",",""))
+
+fb_2014_2$total_requests <-
+  as.integer(str_replace_all(fb_2014_2$total_requests,",",""))
+
+fb_2015_1$total_requests <-
+  as.integer(str_replace_all(fb_2015_1$total_requests,",",""))
+
+fb_2015_2$total_requests <-
+  as.integer(str_replace_all(fb_2015_2$total_requests,",",""))
+
+fb_2020_1$total_requests <-
+  as.integer(str_replace_all(fb_2020_1$total_requests,",",""))
+
+fb_2020_2$total_requests <-
+  as.integer(str_replace_all(fb_2020_2$total_requests,",",""))
+
+fb_2021_1$total_requests <-
+  as.integer(str_replace_all(fb_2021_1$total_requests,",",""))
+```
+
+```{r}
+fb_2016_1$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2016_1$total_requests_accounts,",",""))
+
+fb_2016_2$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2016_2$total_requests_accounts,",",""))
+
+fb_2017_1$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2017_1$total_requests_accounts,",",""))
+
+fb_2017_2$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2017_2$total_requests_accounts,",",""))
+
+fb_2013_1$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2013_1$total_requests_accounts,",",""))
+
+fb_2013_2$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2013_2$total_requests_accounts,",",""))
+
+fb_2014_1$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2014_1$total_requests_accounts,",",""))
+
+fb_2014_2$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2014_2$total_requests_accounts,",",""))
+
+fb_2015_1$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2015_1$total_requests_accounts,",",""))
+
+fb_2015_2$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2015_2$total_requests_accounts,",",""))
+
+fb_2020_1$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2020_1$total_requests_accounts,",",""))
+
+fb_2020_2$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2020_2$total_requests_accounts,",",""))
+
+fb_2021_1$total_requests_accounts <-
+  as.integer(str_replace_all(fb_2021_1$total_requests_accounts,",",""))
+```
+
+```{r}
+df <- dplyr::bind_rows(fb_2013_1, fb_2013_2, 
+                       fb_2014_1, fb_2014_2,
+                       fb_2015_1, fb_2015_2,
+                       fb_2016_1, fb_2016_2, 
+                       fb_2017_1, fb_2017_2, 
+                       fb_2018_1, fb_2018_2, 
+                       fb_2019_1, fb_2019_2, 
+                       fb_2020_1, fb_2020_2,
+                       fb_2021_1)
+
+
+df <- data.table(df)
+```
+
+## Write the US data to the cleaned data folder
+
+```{r}
+write.csv(df[country=="United States", ], "../Clean_Data/Facebook.csv")
+```
