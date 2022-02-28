@@ -1,0 +1,17 @@
+period,country,total_requests,total_requests_accounts,total_requests_challenged,only_non_data_provided,year,half
+2013 H1,United States,927,2330,102,601,2013,1
+2013 H2,United States,638,1380,68,355,2013,2
+2014 H1,United States,789,1739,86,449,2014,1
+2014 H2,United States,788,5267,75,445,2014,2
+2015 H1,United States,971,2727,116,495,2015,1
+2015 H2,United States,1015,5192,116,509,2015,2
+2016 H1,United States,1363,9090,134,746,2016,1
+2016 H2,United States,1219,3958,71,636,2016,2
+2017 H1,United States,1692,6407,130,879,2017,1
+2017 H2,United States,1790,7492,93,943,2017,2
+2018 H1,United States,2397,16416,158,1239,2018,1
+2018 H2,United States,2669,9924,102,1339,2018,2
+2019 H1,United States,3619,15301,119,1691,2019,1
+2019 H2,United States,4095,31780,98,1921,2019,2
+2020 H1,United States,5861,18609,238,2532,2020,1
+2020 H2,United States,5995,37402,203,2801,2020,2
