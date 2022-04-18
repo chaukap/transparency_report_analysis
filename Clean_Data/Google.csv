@@ -1,24 +1,17 @@
-total_requests,Percentage disclosed,total_requests_accounts,country,half,year
-3580,0.0,0.0,United States,2,2009
-4287,0.0,0.0,United States,1,2010
-4601,94.0,0.0,United States,2,2010
-5950,93.0,11057.0,United States,1,2011
-6321,93.0,12243.0,United States,2,2011
-7969,90.0,16281.0,United States,1,2012
-8438,266.0,14791.0,United States,2,2012
-10918,504.0,21683.0,United States,1,2013
-10574,508.0,18254.0,United States,2,2013
-12539,502.0,21576.0,United States,1,2014
-14271,489.0,38014.0,United States,2,2014
-17054,494.0,43328.0,United States,1,2015
-17662,499.0,39222.0,United States,2,2015
-19987,503.0,43596.0,United States,1,2016
-19399,501.0,39528.0,United States,2,2016
-23730,521.0,48902.0,United States,1,2017
-23025,517.0,50930.0,United States,2,2017
-29634,515.0,84172.0,United States,1,2018
-32325,512.0,87235.0,United States,2,2018
-42629,404.0,103125.0,United States,1,2019
-42282,407.0,94931.0,United States,2,2019
-55124,457.0,125770.0,United States,1,2020
-54557,506.0,126700.0,United States,2,2020
+half,year,warrants,warrant_accounts,subpoenas,subpoena_accounts,emergency_requests,emergency_request_accounts,court_orders,court_order_accounts,total_requests,total_requests_accounts,source
+1,2013,2456,4281.0,7458,15770.0,119,175.0,878,1450.0,9914.0,20051.0,https://transparencyreport.google.com/?hl=en
+2,2013,2537,4180.0,7044,11999.0,153,217.0,829,1847.0,9581.0,16179.0,https://transparencyreport.google.com/?hl=en
+1,2014,3187,5849.0,8211,13917.0,171,241.0,963,1560.0,11398.0,19766.0,https://transparencyreport.google.com/?hl=en
+2,2014,3127,5827.0,5755,13141.0,171,272.0,923,1733.0,8882.0,18968.0,https://transparencyreport.google.com/?hl=en
+1,2015,3588,6730.0,7032,21667.0,236,351.0,1141,2589.0,10620.0,28397.0,https://transparencyreport.google.com/?hl=en
+2,2015,3716,9412.0,7250,13549.0,250,359.0,1297,3826.0,10966.0,22961.0,https://transparencyreport.google.com/?hl=en
+1,2016,4246,8090.0,8182,16780.0,259,418.0,1474,4828.0,12428.0,24870.0,https://transparencyreport.google.com/?hl=en
+2,2016,4018,7795.0,7855,14897.0,392,598.0,1406,3966.0,11873.0,22692.0,https://transparencyreport.google.com/?hl=en
+1,2017,5201,10174.0,9320,17642.0,475,806.0,1817,5068.0,14521.0,27816.0,https://transparencyreport.google.com/?hl=en
+2,2017,5182,10237.0,8816,18456.0,437,734.0,1615,5312.0,13998.0,28693.0,https://transparencyreport.google.com/?hl=en
+1,2018,6900,18091.0,11223,32766.0,808,1737.0,2002,9544.0,18123.0,50857.0,https://transparencyreport.google.com/?hl=en
+2,2018,8687,24994.0,11099,26669.0,994,1749.0,1963,9432.0,19786.0,51663.0,https://transparencyreport.google.com/?hl=en
+1,2019,14664,23831.0,12946,35167.0,1184,2100.0,2439,13521.0,27610.0,58998.0,https://transparencyreport.google.com/?hl=en
+2,2019,14652,21854.0,12110,28614.0,1246,2150.0,2367,13308.0,26762.0,50468.0,https://transparencyreport.google.com/?hl=en
+1,2020,19783,28865.0,15537,38983.0,1324,2137.0,2889,14670.0,35320.0,67848.0,https://transparencyreport.google.com/?hl=en
+2,2020,18349,28612.0,16587,42358.0,1399,2197.0,2718,10832.0,34936.0,70970.0,https://transparencyreport.google.com/?hl=en
